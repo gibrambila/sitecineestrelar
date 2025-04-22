@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cadastro de Filme</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="assets/js/segurancaadm.js" defer></script>
+
+
+
+</head>
+
+<body style="background-color: rgb(0, 0, 0);" class="container">
+    <header class="text-center">
+        <a href="indexprogramador.html"><img class="logo" src="assets/img/cinestrelar.png"></a>
+    </header>
+    <section class="text-center">
+        <h1 class="tit-red">EDITAR</h1>
+        <h2 class="tit-white">USUÁRIOS</h2>
+
+        <h3 class="subtit-white">NOME</h3>
+
+
+        <form id="formeditauser">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <input name="nomeuser" id="nomeuser" required class="form-control form-control-lg input-form"
+                        type="text" placeholder="Nome completo*" aria-label=".form-control-lg example">
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
+            <h3 class="subtit-white">CPF</h3>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <input id="cpfuser" name="cpfuser" required class="form-control form-control-lg input-form"
+                        type="text" placeholder="CPF*" aria-label=".form-control-lg example">
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
+            <h3 class="subtit-white">CIDADE</h3>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <select id="cidadeuser" name="cidadeuser" required class="form-select form-control-lg"
+                        aria-label="Default select example">
+                        <option selected>Cidade*</option>
+                        <option value="1">Birigui</option>
+                        <option value="2">Araçatuba</option>
+                    </select>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
+
+            <h3 class="subtit-white">EMAIL</h3>
+
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <input id="emailuser" name="emailuser" required class="form-control form-control-lg input-form"
+                        type="email" placeholder="Email*" aria-label=".form-control-lg example">
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
+            <h3 class="subtit-white">STATUS DA CONTA</h3>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <select id="statususer" name="statususer" required class="form-select form-control-lg"
+                        aria-label="Default select example">
+                        <option selected>Status*</option>
+                        <option value="1">ATIVA</option>
+                        <option value="2">BLOQUEADA</option>
+                    </select>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <h3 class="subtit-white">CARGO</h3>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 mt-2">
+                    <select id="cargouser" name="cargouser" required class="form-select form-control-lg"
+                        aria-label="Default select example">
+                        <option selected>Cargo*</option>
+                        <option value="1">NULL</option>
+                        <option value="2">ADM</option>
+                    </select>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <p class="p-obs mt-2">NULL é conta de usuário.<br>
+            </p>
+
+            <a class="subtit-white2 facalgn" href="listauser.html">Não precisa editar? Voltar a lista.</a><br>
+
+            <button type="submit" id="btncc" class="btn btn-danger tit-white1 col-8" style="margin-bottom: 30px;">SALVAR
+                ALTERAÇÕES</button>
+        </form>
+
+
+
+
+    </section>
+
+    <script>
+
+
+
+
+        const { search } = window.location;
+        const params = new URLSearchParams(search);
+        const id = params.get('id');  // => ejhe7a61c52nr2f
+
+        const nome = params.get('nome');  // => ejhe7a61c52nr2f
+        const cpf = params.get('cpf');  // => ejhe7a61c52nr2f
+        const cidade = params.get('cidade');  // => ejhe7a61c52nr2f
+        const email = params.get('email');  // => ejhe7a61c52nr2f
+        const ativo = params.get('ativo');  // => ejhe7a61c52nr2f
+        const cargo = params.get('cargo');  // => ejhe7a61c52nr2
+
+        document.getElementById("nomeuser").value = nome
+        document.getElementById("cpfuser").value = cpf
+        document.getElementById("emailuser").value = email
+        document.getElementById("cidadeuser").value = cidade
+
+        if (ativo === "Ativo") {
+            document.getElementById("statususer").value = 1
+        } else {
+            document.getElementById("statususer").value = 2
+        }
+
+        if (cargo === "ADM") {
+            document.getElementById("cargouser").value = 2
+        } else {
+            document.getElementById("cargouser").value = 1
+        }
+
+
+        $("#formeditauser").on("submit", function (e) {
+
+            // Faz com que não atualiza a página
+            e.preventDefault();
+
+            // Captura tudo o que o usuario preencheu 
+            let dados = new FormData(this);
+
+            // Repassa os dados para OBJETO
+            let envia = {
+                nome: dados.get("nomeuser"),
+                cpf: dados.get("cpfuser"),
+                email: dados.get("emailuser"),
+                cidade: dados.get("cidadeuser"),
+                ativo: dados.get("statususer") == 1 ? "Ativo" : "Inativo",
+                cargo: dados.get("cargouser") == 1 ? null : 'ADM'
+
+            }
+
+            // Transforma o Objeto JSON em um STRING
+            envia = JSON.stringify(envia)
+
+            var token = localStorage.getItem("token")
+
+            // Envia as informações para a API
+            $.ajax({
+                // Metodo HTTP da API
+                method: "PUT", // PUT
+
+                // URL da API
+                url: "http://192.168.1.128:5000/usuarios/editar/" + id, // ROTA EDITA 
+
+                // Envia os dados do formulario
+                data: envia,
+
+                headers: {
+                    "Authorization": "Bearer " + token
+                },
+
+                // Informa que deve ser retornado um JSON
+                contentType: "application/json",
+
+                // Metodo executado quando da certo a requisição
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "DADOS EDITADOS!",
+                        icon: "success",
+                        draggable: true
+                    })
+                },
+
+                // Caso de algum erro executa essa função
+                error: function (retorno) {
+                    // Caso de erro, exibe a mensagem da API diretamente com SweetAlert2
+                    const mensagemErro = retorno.responseJSON?.message || "Ocorreu um erro desconhecido.";
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "ERRO",
+                        text: retorno.responseJSON?.error || "Ocorreu um erro, tente novamente mais tarde.",
+                    });
+                }
+            })
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cadastro de Filme</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="assets/js/segurancaadm.js" defer></script>
+
+
+
+</head>
+<body class="container" style="background-color: black;">
+    <header class="text-center">
+        <a href="indexprogramador.html" ><img class="logo" src="assets/img/cinestrelar.png"></a>
+    </header>
+    <section class="text-center">
+        <h1 class="tit-red1" >LISTAGEM</h1>
+        <h2 class="tit-white11">DE USUÁRIOS</h2>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" >
+                    <table style="background-color: white; width: 100%;  border-radius: 20px; margin-top: 45px; box-shadow: 5px 5px 40px rgb(109, 106, 106); margin-bottom: 70px;">
+                        <colgroup>
+                          <col>
+                          <col span="2" />
+                        </colgroup>
+                        <tr>
+                          <th id="idtabel" style="height: 60px; " >ID</th>
+                          <th style="border: 1px solid; border-color: red; " >Nome</th>
+                          <th style="border: 1px solid; border-color: red; " >CPF</th>
+                          <th style="border: 1px solid; border-color: red; " >Cidade</th>
+                          <th style="border: 1px solid; border-color: red; " >Email</th>
+                          <th style="border: 1px solid; border-color: red; " >Ativo</th>
+                          <th style="border: 1px solid; border-color: red; " >Cargo</th>
+                          <th >Editar</th>
+                      
+                      
+                        </tr>
+                      
+                        <tbody id="tabeluser">
+                          <tr style="border-color: red; ">
+                              <th style="border-top: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >64</p>
+                              </th>
+                          
+                              <th style="border: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >Arthur123</p>
+                              </th>
+                          
+                              <th style="border: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >12345678910</p>
+                              </th>
+                          
+                              <th style="border: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >Birigui</p>
+                              </th>
+                          
+                              <th style="border: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >arthur123@gmail.com</p>
+                              </th>
+                          
+                              <th style="border: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >Ativo</p>
+                              </th>
+                          
+                              <th style="border: 1px solid; border-color: red;height: 60px; " >
+                                  <p class="ptabel" style="padding-top: 15px;" >NULL</p>
+                              </th>
+                          
+                              <th style="border-top: 1px solid; border-color: red;height: 60px; " >
+                                  <a href="edituser.html" style="text-decoration: none;" class="btntabel">
+                                      EDITAR
+                                  </a>
+                              </th>
+                          
+                          
+                          
+                            </tr>
+                        </tbody>
+                        
+                        
+                      
+                        
+                      </table >
+                </div>
+            </div>
+        </div>
+        
+        
+        
+
+
+
+<script>
+    async function tabeluser() {
+        try {
+            // Definindo o token de autenticação (substitua pelo seu token real)
+            const token = localStorage.getItem("token");  // Coloque o seu token real aqui
+
+            // Fazendo a requisição à API com o token no cabeçalho Authorization
+            const resposta = await fetch("http://192.168.1.128:5000/usuarios/lista", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,  // Enviando o token no cabeçalho
+                    'Content-Type': 'application/json'   // Definindo o tipo de conteúdo
+                }
+            });
+
+            const dados = await resposta.json();  // Parse do JSON retornado pela API
+
+            // Pegando o corpo da tabela onde os dados serão inseridos
+            const usuariosContainer = document.getElementById("tabeluser");
+
+            // Iterando sobre os dados de usuários recebidos da API
+            dados.usuarios.forEach(usuario => {
+                // Criando uma nova linha para a tabela
+                const usuarioRow = document.createElement("tr");
+                usuarioRow.style.borderColor = 'red';
+
+                usuarioRow.innerHTML = `
+                    <th style="border-top: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.id}</p>
+                    </th>
+                    <th style="border: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.nome}</p>
+                    </th>
+                    <th style="border: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.cpf}</p>
+                    </th>
+                    <th style="border: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.cidade}</p>
+                    </th>
+                    <th style="border: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.email}</p>
+                    </th>
+                    <th style="border: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.ativo}</p>
+                    </th>
+                    <th style="border: 1px solid; border-color: red; height: 60px;">
+                        <p class="ptabel" style="padding-top: 15px;">${usuario.cargo || 'NULL'}</p>
+                    </th>
+                    <th style="border-top: 1px solid; border-color: red; height: 60px;">
+                        <a href="edituser.html?id=${usuario.id}&nome=${usuario.nome}&cpf=${usuario.cpf}&cidade=${usuario.cidade}&email=${usuario.email}&ativo=${usuario.ativo}&cargo=${usuario.cargo || 'NULL'}" style="text-decoration: none;" class="btntabel">EDITAR</a>
+                    </th>
+                `;
+
+                // Adicionando a nova linha à tabela
+                usuariosContainer.appendChild(usuarioRow);
+            });
+        } catch (erro) {
+            console.error("Erro ao carregar os usuários:", erro);
+        }
+    }
+
+    // Carregar os usuários quando a página for carregada
+    tabeluser();
+
+
+
+</script>
+        
+    </section>
+</body>
+</html>

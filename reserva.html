@@ -1,0 +1,295 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html lang="pt-br"> <!-- Define o idioma principal da página como português do Brasil -->
+<head>
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Torna a página responsiva para dispositivos móveis -->
+    <title>Reserva de Assentos</title> <!-- Título da aba do navegador -->
+
+    <!-- Importa o arquivo de estilos CSS personalizado -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Pré-conexão com servidores do Google Fonts para melhorar desempenho -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Importa o script JS do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Importa o SweetAlert2 para alertas personalizados -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <!-- Importa a fonte "Poppins" do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Importa um script JS local deferido para carregar após o DOM estar pronto -->
+    <script src="assets/js/seguranca.js"></script> <!-- Importa um script JS local para segurança -->
+
+    <!-- Estilos CSS embutidos para os assentos e botão de confirmação -->
+    <style>
+        .assento {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            font-size: 20px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .assento:hover {
+            background-color: #666;
+        }
+
+        .selecionado {
+            background-color: green !important;
+        }
+
+        .confirmar {
+            background-color: #ff6600;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .confirmar:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body style="background-color: black; padding: 20px; font-family: Poppins;"> <!-- Define estilo inline do corpo -->
+
+    <!-- Cabeçalho com logo centralizada -->
+    <header class="text-center" style="text-align: center;">
+        <a href="index.html" class="text-center"><img class="logo text-center" src="assets/img/cinestrelar.png"></a>
+    </header>
+
+    <!-- Título principal -->
+    <h1 class="tit-red" style="text-align: center;">RESERVE</h1>
+    <h2 class="tit-white" style="text-align: center;">SEU ASSENTO</h2>
+
+    
+
+    <div class="seat-grid-container d-flex" style="justify-content: center; flex-direction: column; gap: 15px;">
+        <div class="seat-container">
+            <!-- Números das colunas (assentos) -->
+            <div class="column-labels">
+                <span>1ﾠ</span><span>2ﾠ</span><span>3ﾠ</span><span>4ﾠ</span><span>5ﾠ</span><span>6ﾠ</span>
+                <span>7ﾠ</span><span>8ﾠ</span><span>9ﾠ</span><span>10</span><span>11</span><span>12</span>
+                <span>13</span><span>14</span>
+            </div>
+
+            <!-- Área onde os assentos serão inseridos dinamicamente -->
+            <div class="seat-grid-container-inner">
+                <!-- Letras das linhas -->
+                <div class="row-labels">
+                    <span>A</span>
+                    <span>B</span>
+                    <span>C</span>
+                    <span>D</span><span>E</span><span>F</span>
+                </div>
+
+                <div class="seat-grid">
+                <button class="assento" data-id="1" data-assento="A1">👤</button>
+                <button class="assento" data-id="2" data-assento="A2">👤</button>
+                <button class="assento" data-id="3" data-assento="A3">👤</button>
+                <button class="assento" data-id="4" data-assento="A4">👤</button>
+                <button class="assento" data-id="5" data-assento="A5">👤</button>
+                <button class="assento" data-id="6" data-assento="A6">👤</button>
+                <button class="assento" data-id="7" data-assento="A7">👤</button>
+                <button class="assento" data-id="8" data-assento="A8">👤</button>
+                <button class="assento" data-id="9" data-assento="A9">👤</button>
+                <button class="assento" data-id="10" data-assento="A10">👤</button>
+                <button class="assento" data-id="11" data-assento="A11">👤</button>
+                <button class="assento" data-id="12" data-assento="A12">👤</button>
+                <button class="assento" data-id="13" data-assento="A13">👤</button>
+                <button class="assento" data-id="14" data-assento="A14">👤</button>
+                <button class="assento" data-id="15" data-assento="B1">👤</button>
+                <button class="assento" data-id="16" data-assento="B2">👤</button>
+                <button class="assento" data-id="17" data-assento="B3">👤</button>
+                <button class="assento" data-id="18" data-assento="B4">👤</button>
+                <button class="assento" data-id="19" data-assento="B5">👤</button>
+                <button class="assento" data-id="20" data-assento="B6">👤</button>
+                <button class="assento" data-id="21" data-assento="B7">👤</button>
+                <button class="assento" data-id="22" data-assento="B8">👤</button>
+                <button class="assento" data-id="23" data-assento="B9">👤</button>
+                <button class="assento" data-id="24" data-assento="B10">👤</button>
+                <button class="assento" data-id="25" data-assento="B11">👤</button>
+                <button class="assento" data-id="26" data-assento="B12">👤</button>
+                <button class="assento" data-id="27" data-assento="B13">👤</button>
+                <button class="assento" data-id="28" data-assento="B14">👤</button>
+                <button class="assento" data-id="29" data-assento="C1">👤</button>
+                <button class="assento" data-id="30" data-assento="C2">👤</button>
+                <button class="assento" data-id="31" data-assento="C3">👤</button>
+                <button class="assento" data-id="32" data-assento="C4">👤</button>
+                <button class="assento" data-id="33" data-assento="C5">👤</button>
+                <button class="assento" data-id="34" data-assento="C6">👤</button>
+                <button class="assento" data-id="35" data-assento="C7">👤</button>
+                <button class="assento" data-id="36" data-assento="C8">👤</button>
+                <button class="assento" data-id="37" data-assento="C9">👤</button>
+                <button class="assento" data-id="38" data-assento="C10">👤</button>
+                <button class="assento" data-id="39" data-assento="C11">👤</button>
+                <button class="assento" data-id="40" data-assento="C12">👤</button>
+                <button class="assento" data-id="41" data-assento="C13">👤</button>
+                <button class="assento" data-id="42" data-assento="C14">👤</button>
+                <button class="assento" data-id="43" data-assento="D1">👤</button>
+                <button class="assento" data-id="44" data-assento="D2">👤</button>
+                <button class="assento" data-id="45" data-assento="D3">👤</button>
+                <button class="assento" data-id="46" data-assento="D4">👤</button>
+                <button class="assento" data-id="47" data-assento="D5">👤</button>
+                <button class="assento" data-id="48" data-assento="D6">👤</button>
+                <button class="assento" data-id="49" data-assento="D7">👤</button>
+                <button class="assento" data-id="50" data-assento="D8">👤</button>
+                <button class="assento" data-id="51" data-assento="D9">👤</button>
+                <button class="assento" data-id="52" data-assento="D10">👤</button>
+                <button class="assento" data-id="53" data-assento="D11">👤</button>
+                <button class="assento" data-id="54" data-assento="D12">👤</button>
+                <button class="assento" data-id="55" data-assento="D13">👤</button>
+                <button class="assento" data-id="56" data-assento="D14">👤</button>
+                <button class="assento" data-id="57" data-assento="E1">👤</button>
+                <button class="assento" data-id="58" data-assento="E2">👤</button>
+                <button class="assento" data-id="59" data-assento="E3">👤</button>
+                <button class="assento" data-id="60" data-assento="E4">👤</button>
+                <button class="assento" data-id="61" data-assento="E5">👤</button>
+                <button class="assento" data-id="62" data-assento="E6">👤</button>
+                <button class="assento" data-id="63" data-assento="E7">👤</button>
+                <button class="assento" data-id="64" data-assento="E8">👤</button>
+                <button class="assento" data-id="65" data-assento="E9">👤</button>
+                <button class="assento" data-id="66" data-assento="E10">👤</button>
+                <button class="assento" data-id="67" data-assento="E11">👤</button>
+                <button class="assento" data-id="68" data-assento="E12">👤</button>
+                <button class="assento" data-id="69" data-assento="E13">👤</button>
+                <button class="assento" data-id="70" data-assento="E14">👤</button>
+                <button class="assento" data-id="71" data-assento="F1">👤</button>
+                <button class="assento" data-id="72" data-assento="F2">👤</button>
+                <button class="assento" data-id="73" data-assento="F3">👤</button>
+                <button class="assento" data-id="74" data-assento="F4">👤</button>
+                <button class="assento" data-id="75" data-assento="F5">👤</button>
+                <button class="assento" data-id="76" data-assento="F6">👤</button>
+                <button class="assento" data-id="77" data-assento="F7">👤</button>
+                <button class="assento" data-id="78" data-assento="F8">👤</button>
+                <button class="assento" data-id="79" data-assento="F9">👤</button>
+                <button class="assento" data-id="80" data-assento="F10">👤</button>
+                <button class="assento" data-id="81" data-assento="F11">👤</button>
+                <button class="assento" data-id="83" data-assento="F12">👤</button>
+                <button class="assento" data-id="84" data-assento="F13">👤</button>
+            </div> <!-- Fim da seat-grid-container-inner -->
+        </div> <!-- Fim da seat-container -->
+    </div> 
+
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-8" style=" text-align: center;" >
+                    <button id="btn-confirmar" class="confirmar btn-danger" style="display: block; width: 970px; margin: 0 auto; font-family: Poppins; font-weight: 600;" disabled>CONFIRMAR</button>
+                </div>
+            </div>
+        </div>
+
+    <script defer>
+       // Cria um array vazio para armazenar os assentos selecionados pelo usuário
+var assentosSelecionados = [];
+
+// Pega o parâmetro "id" da URL (id da sessão) e armazena na variável idSessao
+var idSessao = new URLSearchParams(window.location.search).get('id');
+
+// Pega o token armazenado no localStorage (gerado após o login do usuário)
+var token = localStorage.getItem('token');
+
+// Quando o usuário clicar em algum assento (classe .assento)
+$(".assento").click(function () {
+
+    // Pega o ID do assento que foi clicado
+    var assentoId = $(this).data("id");
+
+    // Pega o nome ou número do assento clicado
+    var assentoNome = $(this).data("assento");
+
+    // Adiciona ou remove a classe "selecionado" do assento clicado
+    $(this).toggleClass("selecionado");
+
+    // Troca o ícone do assento: ✔️ se estiver selecionado, 👤 se estiver livre
+    $(this).text($(this).hasClass("selecionado") ? "✔️" : "👤")
+
+    // Muda a cor de fundo do assento: verde se selecionado, cinza se livre
+    $(this).css("background-color", $(this).hasClass("selecionado") ? "green" : "#444");
+
+    // Mantém a cor do texto branca (independente se selecionado ou não)
+    $(this).css("color", "white");
+
+    // Verifica se o assento está selecionado
+    if ($(this).hasClass("selecionado")) {
+        // Se sim, adiciona o id do assento no array
+        assentosSelecionados.push(assentoId);
+    } else {
+        // Se não, remove o id do assento do array
+        assentosSelecionados = assentosSelecionados.filter(function (id) {
+            return id !== assentoId;
+        });
+    }
+
+    // Conta quantos assentos estão selecionados no momento
+    var numAssentosSelecionados = $(".assento.selecionado").length;
+
+    // Habilita ou desabilita o botão de confirmar
+    // Só habilita se pelo menos 1 assento estiver selecionado
+    $("#btn-confirmar").prop("disabled", numAssentosSelecionados === 0);
+});
+
+// Quando o botão de confirmar for clicado
+$("#btn-confirmar").on("click", function() {
+
+    var idCadastro = localStorage.getItem('id_cadastro'); // Pega o id do cadastro do usuário logado
+
+    // Configura os dados da requisição para reservar o assento
+    var settings = {
+        "url": "http://192.168.1.128:5000/reservar",
+        "method": "POST",       // Define o método da requisição, que nesse caso é POST (envio de dados)
+        "timeout": 0,       // Define o tempo limite da requisição (0 = sem limite)
+        "headers": {     // Define os headers da requisição (informações extras enviadas junto)
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+
+        "data": JSON.stringify({     // Define os dados que serão enviados para a API, convertidos em JSON
+            "id_cadastro": idCadastro,
+            "id_sessao": idSessao,
+            "id_assento": assentosSelecionados,
+        }),
+        "success": function(retorno) {       // Função que será executada se a requisição der certo (reserva feita)
+            Swal.fire({
+                title: "Reserva realizada com sucesso!",
+                icon: "success",
+                draggable: true,
+            }).then(() => {
+                window.location.href = "confirmacao.html"; // Redireciona para a página inicial após a reserva
+            });
+        }, 
+        "error": function(resposta) {
+            // Se der erro, mostra um alerta de erro
+            Swal.fire({
+                icon: "error",
+                title: "ERRO",
+                text: resposta.responseJSON?.error || "Ocorreu um erro, tente novamente mais tarde.",
+            });
+        }
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+})
+
+    </script>
+</body>
+</html>

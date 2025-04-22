@@ -1,0 +1,66 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    
+}
+.container {
+    max-width: 350px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+h1 {
+    color: red;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+h1 span {
+    color: white;
+}
+h3 {
+    font-size: 14px;
+    margin-top: 10px;
+}
+.detalhes {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.detalhes p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.detalhes p:before {
+    content: '🔴';
+    font-size: 14px;
+}
+.cancelar {
+    background-color: red;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.cancelar:hover {
+    background-color: darkred;
+}
+
+.img {
+    align-items: center;
+   width: 10%;
+}
+
+.rodape {
+    background-color: #8B0000; color: white; padding: 10px; text-align: center; margin-top: 0px; 
+}
