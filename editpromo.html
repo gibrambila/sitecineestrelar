@@ -27,54 +27,42 @@
         <h3 class="subtit-white111">PREENCHA OS DADOS ABAIXO</h3>
 
         <form id="addpromo">
-            <div class="row mt-2">
-                <div class="col-md-2"></div>
-                <div class="col-md-8" style="padding: 0;">
-                    <input id="titulo" name="titulopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Título da promoção*">
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-            <div class="row mt-2" >
-                <div class="col-md-2"></div>
-                <div class="col-md-4" style="padding: 0; padding-right: 10px;" >
-                    <input name="duracao" id="duracaopromo"  required class="form-control form-control-lg input-form11" type="text" placeholder="Duração (dias)*">
-                </div>
-                <div class="col-md-4" style="padding: 0;">
-                    <select name="genero" id="generopromo"  required class="form-select11 form-control-lg">
-                        <option selected>Gênero*</option>
-                        <option value="acao">Ingressos</option>
-                        <option value="comedia">Alimentação</option>
-                        <option value="drama">  Brindes</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-md-2"></div>
-                <div class="col-md-8" style="padding: 0;">
-                    <input name="descricaopromo" id="descricaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Descrição*">
-                </div>
-                <div class="col-md-2"></div>
-            
+    <div class="mb-3">
+        <input id="titulo" name="titulopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Título da promoção*">
+    </div>
 
-            <h3 class="subtit-white111">IDENTIDADE VISUAL</h3>
-            <div class="row mt-2">
-                <div class="col-md-2"></div>
-                <div class="col-md-8" style="padding: 0;">
-                    <input id="capapromo" name="capapromo" style=" height: 12px;" required class="form-control addimg form-control-lg input-form11" type="file" placeholder="Capa do promoção*" accept="image/*">
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-            
-            <div class="row mt-2">
-                <div class="col-md-2"></div>
-                <button type="submit" id="btncc" class="btn btn-danger tit-white11 col-md-8">EDITAR PROMOÇÃO</button>
-                <div class="col-md-2"></div>
+    <div class="mb-3">
+        <input name="duracao" id="duracaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Duração (dias)*">
+    </div>
 
-                <div class="col-md-2"></div>
-                <a href="indexprogramador.html" style="margin-top: -80px;" id="btncc" class="btn btn-danger tit-white11 col-md-8"> CANCELAR</a>
-                <div class="col-md-2"></div>
+    <div class="mb-3">
+        <select name="genero" id="generopromo" required class="form-select form-control-lg input-form11">
+            <option selected disabled>Gênero*</option>
+            <option value="acao">Ingressos</option>
+            <option value="comedia">Alimentação</option>
+            <option value="drama">Brindes</option>
+        </select>
+    </div>
 
-        </form>
+    <div class="mb-3">
+        <input name="descricaopromo" id="descricaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Descrição*">
+    </div>
+
+    <h3 class="subtit-white111 mt-4">IDENTIDADE VISUAL</h3>
+
+    <div class="mb-3">
+        <input id="capapromo" name="capapromo" required class="form-control form-control-lg input-form11" type="file" accept="image/*">
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" id="btncc" class="btn btn-danger tit-white11">EDITAR PROMOÇÃO</button>
+        <a href="indexprogramador.html" style="height: 80px; font-size: 15px;" id="btncancel" class="btn btn-danger tit-white11"><p style="
+            position: relative;
+            top: 23px;
+        ">CANCELAR  </p></a>
+    </div>
+</form>
+
 
         <script>
  // Captura o evento de submissão do formulário com ID "addpromo"

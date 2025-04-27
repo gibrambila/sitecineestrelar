@@ -46,7 +46,6 @@
     display: flex;
     justify-content: center;
     gap: 63px;
-    margin-bottom: 15px;
     border-radius: 10px;
     margin-left: 30px;
 }
@@ -325,7 +324,13 @@
     right: -500px;
     transition: all 0.3s;
 }
-
+.btn-confirmacao{
+    display: block;
+    width: 695px;
+    margin: 0 auto;
+    font-family: Poppins;
+    font-weight: 600;
+}
 .divselectcbc {
     z-index: 99;
     background-color: #383838;
@@ -412,8 +417,7 @@
     font-size: 20px;
     font-weight: 700;
     color: white;
-    text-align: left;
-    margin-left: 220px;
+    text-align: center;
     margin-top: 40px;
 }
 
@@ -564,7 +568,9 @@
 
 #btncc {
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
+    height: 75px;
+    font-size: 15px;
 }
 
 .cabecalho {
@@ -575,6 +581,64 @@
     margin-left: -30px;
 }
 
+@media (max-width: 1024px) {
+    .subtit-white {
+        margin-left: 165px;
+    }  
+
+    .seat-grid {
+        display: grid;
+        grid-template-columns: repeat(14, 1fr);
+        gap: 22px;
+    }
+    
+    .column-labels {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        border-radius: 10px;
+        margin-left: 30px;
+    }
+    
+    .row-labels {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 25px;
+        color: red;
+        font-size: 20px;
+        font-weight: bold;
+        gap: 31px;
+    }
+    
+    .btn-confirmacao {
+        display: block;
+        width: 709px;
+        margin: 0 auto;
+        font-family: Poppins;
+        font-weight: 600;
+    }
+    
+    .assento {
+        cursor: pointer;
+        font-size: 24px;
+        width: 15px!important;
+        height: 28px!important;
+        margin: 5px;
+        text-align: center;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+    
+
+
+}
+
+@media (max-width: 768px) {
+    .subtit-white {
+        margin-left: 125px;
+    }  
+}
 @media (max-width: 430px) {
     .subtit-white {
         margin-left: 15px;
@@ -664,14 +728,39 @@
     margin-left: 27px;
 }
 
-@media  (max-width: 320px) {
-    .avatarcbc {
-        width: 22px;
-        height: 22px;
-        position: absolute;
-        left:277px;
-        top: 60px;
-        
+@media  (max-width: 426px) {
+    .seat-grid{
+        gap: 7px;
+    }
+    .seat-container{
+        width: 100%;
+        padding: 20px;
+    }
+    .column-labels{
+        gap: 6px;
+        margin-left: 12px;
+    }
+    .column-labels span{
+        font-size: 10px;
+    }
+    .row-labels{
+        margin-right: 0px;
+        gap: 22px;
+        position: relative;
+        left: -7px;
+        font-size: 13px;
+    }
+    .btn-confirmacao{
+        width: 262px;
+        font-size: 15px!important;
+        height: 60px!important;
+    }
+
+    .assento{
+        width: 0px !important;
+        height: 27px !important;
+        margin: 5px !important;
+        font-size: 9px !important;
     }
 }
 
@@ -688,6 +777,14 @@
 }
 
 @media  (max-width: 320px){
+    .avatarcbc {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        left:277px;
+        top: 60px;
+        
+    }
     .divcbc  {
         margin-left: 3;
         display: flex !important;
@@ -866,4 +963,31 @@
     font-weight: bold;
   }
    
+ @media(min-width:1025px){
+    .seat-grid{
+        gap: 21px;
+    }
+
+    .assento{
+        width: 15px!important;
+        height: 15px !important;
+        font-size: 1rem;
+    }
+
+    .row-labels{
+        gap: 16px;
+    }
+
+    .column-labels{
+        gap: 23px;
+        margin-left: 33px;
+    }
+
+    .seat-container{
+        width: 55%;
+    }
+    .seat-grid-container{
+        align-items: center;
+    }
+}
  
