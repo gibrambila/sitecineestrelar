@@ -100,7 +100,7 @@
         
                 // Configurações da requisição AJAX
                 var settings = {
-                    "url": "http://192.168.1.128:5000/sessao/add", // URL da API
+                    "url": "http://192.168.1.120:5000/sessao/add", // URL da API
                     "method": "POST", // Método POST
                     "timeout": 0, // Sem timeout
                     "headers": {
@@ -138,7 +138,7 @@
 
             async function carregarFilmes() {       // Função assíncrona (async) responsável por buscar e carregar os filmes no select da tela
                 try {
-                    const resposta = await fetch("http://192.168.1.128:5000/filme");                // Faz uma requisição HTTP (GET) para o backend buscar todos os filmes cadastrados
+                    const resposta = await fetch("http://192.168.1.120:5000/filme");                // Faz uma requisição HTTP (GET) para o backend buscar todos os filmes cadastrados
                     const dados = await resposta.json();            // Converte a resposta da requisição para formato JSON
 
                     const filmesContainer = document.getElementById("filmesessao");         // Pega o elemento HTML que tem o id "filmesessao" (normalmente um <select>)
@@ -162,15 +162,15 @@
             
             async function carregarSalas() {   // Função assíncrona responsável por buscar e carregar as salas no select da tela
     try {
-        const resposta = await fetch("http://192.168.1.128:5000/salas");  // Faz a requisição GET pra buscar todas as salas
+        const resposta = await fetch("http://192.168.1.120:5000/salas");  // Faz a requisição GET pra buscar todas as salas
         const dados = await resposta.json();   // Converte a resposta em JSON
 
         const salasContainer = document.getElementById("salasessao");  // Pega o select que tem id="salasessao"
 
-        dados.cadastro.forEach(filme => {   // Percorre cada sala retornada da API
+        dados.salas.forEach(sala => {   // Percorre cada sala retornada da API
 
             // Cria as opções do select
-            salasContainer.innerHTML += `<option value="${sala.id_sala}">${sala.nome_sala}</option>`;
+            salasContainer.innerHTML += `<option value="${sala.id_sala}">${sala.nome}</option>`;
 
         });
 

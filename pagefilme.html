@@ -54,7 +54,7 @@
                       const urlParams = new URLSearchParams(window.location.search);
                       const idFilme = urlParams.get('id');
 
-                      const resposta = await fetch(`http://192.168.1.128:5000/filme/${idFilme}`);
+                      const resposta = await fetch(`http://192.168.1.120:5000/filme/${idFilme}`);
 
                       if (!resposta.ok) {
                           throw new Error('Filme não encontrado');
@@ -62,7 +62,7 @@
 
                       const filme = await resposta.json();
 
-                      document.getElementById('capafilmee').src = `http://192.168.1.128:5000/${filme.imagem}`;
+                      document.getElementById('capafilmee').src = `http://192.168.1.120:5000/${filme.imagem}`;
 
                   } catch (erro) {
                       console.error("Erro ao carregar imagem:", erro);
@@ -115,12 +115,12 @@
           var urlParams = new URLSearchParams(window.location.search);
           var id = urlParams.get('id');
 
-          document.getElementById("capafilmee").src = "http://192.168.1.128:5000/static/uploads/cadastro_filme/" + id + ".jpg";
+          document.getElementById("capafilmee").src = "http://192.168.1.120:5000/static/uploads/cadastro_filme/" + id + ".jpeg";
 
           var token = localStorage.getItem('token');
 
           var settings = {
-            "url": "http://192.168.1.128:5000/sessao/" + id,
+            "url": "http://192.168.1.120:5000/sessao/" + id,
             "method": "GET",
             "timeout": 0,
             "headers": {

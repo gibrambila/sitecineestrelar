@@ -104,7 +104,7 @@
             async function carregarFilmes() {   // Função assíncrona responsável por buscar e exibir os filmes na tela
 
                 try {
-                    const resposta = await fetch("http://192.168.1.128:5000/filme");
+                    const resposta = await fetch("http://192.168.1.120:5000/filme");
                     const dados = await resposta.json();                // Transforma a resposta em formato JSON
         
                     const filmesContainer = document.getElementById("filmesexibe");         // Pega o elemento HTML com id "filmesexibe" (provavelmente uma div onde os filmes serão mostrados)
@@ -118,7 +118,7 @@
                             filmeDiv.innerHTML = `
                                 <div class="img-programacao text-center" style="widht: 192px; height: 282px; margin-bottom: 200px; " >
                                     <a href="pagefilme.html?id=${filme.id_cadastrof}" >
-                                        <img style="width: 192px; height:282px " class="img-programacao text-center" src="http://192.168.1.128:5000/${filme.imagem}" alt="${filme.titulo}">
+                                        <img style="width: 192px; height:282px " class="img-programacao text-center" src="http://192.168.1.120:5000/${filme.imagem}" alt="${filme.titulo}">
                                     </a>
                                     </div>
                             `;

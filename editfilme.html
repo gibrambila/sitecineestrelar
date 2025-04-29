@@ -173,7 +173,7 @@
         // Faz a requisição para editar os dados do filme na API
         $.ajax({
             method: "PUT", // Método HTTP para atualização
-            url: "http://192.168.1.128:5000/filme_edit_dados/" + id, // URL da API com o ID do filme
+            url: "http://192.168.1.120:5000/filme_edit_dados/" + id, // URL da API com o ID do filme
             data: envia, // Envia os dados convertidos para JSON
 
             headers: {
@@ -201,7 +201,7 @@
 
                 // Configuração da requisição para enviar a imagem e o banner
                 var settings = {
-                    url: "http://192.168.1.128:5000/filme_edit_imagem/" + id, // URL da API para atualizar imagem/banner
+                    url: "http://192.168.1.120:5000/filme_edit_imagem/" + id, // URL da API para atualizar imagem/banner
                     method: "PUT",
                     timeout: 0,
                     processData: false, // Indica que os dados não devem ser processados automaticamente

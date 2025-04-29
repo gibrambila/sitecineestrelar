@@ -253,7 +253,7 @@ $("#btn-confirmar").on("click", function() {
 
     // Configura os dados da requisição para reservar o assento
     var settings = {
-        "url": "http://192.168.1.128:5000/reservar",
+        "url": "http://192.168.1.120:5000/reservar",
         "method": "POST",       // Define o método da requisição, que nesse caso é POST (envio de dados)
         "timeout": 0,       // Define o tempo limite da requisição (0 = sem limite)
         "headers": {     // Define os headers da requisição (informações extras enviadas junto)
@@ -280,7 +280,7 @@ $("#btn-confirmar").on("click", function() {
             Swal.fire({
                 icon: "error",
                 title: "ERRO",
-                text: resposta.responseJSON?.error || "Ocorreu um erro, tente novamente mais tarde.",
+                text: resposta.responseJSON?.error || "Os assentos já foram ocupados!",
             });
         }
     };
@@ -291,5 +291,40 @@ $("#btn-confirmar").on("click", function() {
 })
 
     </script>
+
+
+<style>
+    .assento.reservado {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  </style>
+  
+  <script>
+    async function marcarAssentosReservados() {
+      try {
+   
+        const response = await fetch('http://192.168.1.120:5000/sessao/assentos/' + idSessao);
+        const data = await response.json();
+  
+        const assentosReservados = data.assentos_reservados;
+  
+        document.querySelectorAll('.assento').forEach(botao => {
+          const codigoAssento = botao.getAttribute('data-assento');
+  
+          if (assentosReservados.includes(codigoAssento)) {
+            botao.classList.add('reservado');
+            botao.disabled = true; // opcional: desativa o botão
+          }
+        });
+      } catch (error) {
+        console.error('Erro ao buscar assentos reservados:', error);
+      }
+    }
+  
+    // Chama a função ao carregar a página
+    document.addEventListener('DOMContentLoaded', marcarAssentosReservados);
+  </script>
+  
 </body>
 </html>
