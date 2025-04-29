@@ -325,6 +325,40 @@ $("#btn-confirmar").on("click", function() {
     // Chama a função ao carregar a página
     document.addEventListener('DOMContentLoaded', marcarAssentosReservados);
   </script>
+
+
+
+<style>
+    .reservado {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+  </style>
+
+<script>
+     async function marcarAssentosReservados() {
+    try {
+      const response = await fetch('http://192.168.1.120:5000/sessao/assentos/42');
+      const data = await response.json();
+
+      const assentosReservados = data.assentos_reservados;
+
+      document.querySelectorAll('.assento').forEach(botao => {
+        const codigoAssento = botao.getAttribute('data-assento');
+
+        if (assentosReservados.includes(codigoAssento)) {
+          botao.classList.add('reservado');
+          botao.disabled = true; // opcional: desativa o botão
+        }
+      });
+    } catch (error) {
+      console.error('Erro ao buscar assentos reservados:', error);
+    }
+  }
+
+  // Chama a função ao carregar a página
+  document.addEventListener('DOMContentLoaded', marcarAssentosReservados);
+</script>
   
 </body>
 </html>

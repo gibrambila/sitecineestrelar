@@ -683,6 +683,36 @@
     margin-top: 53px;
     margin-left: 30px;
 }
+@media  (max-width: 426px) {
+    .btn-cbc {
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        margin-top: 13px;
+        margin-left: -64px;
+    }
+
+}
+
+@media  (max-width: 426px) {
+
+    .subtit-white22 {
+        font-family: Poppins;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        text-align: left;
+        margin-left: 48px;
+        margin-top: 102px;
+    }
+}
+
+
+
+
+
 
 
 
@@ -781,8 +811,8 @@
         width: 22px;
         height: 22px;
         position: absolute;
-        left:277px;
-        top: 60px;
+        left:-2px;
+       
         
     }
     .divcbc  {

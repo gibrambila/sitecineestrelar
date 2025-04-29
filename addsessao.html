@@ -44,7 +44,16 @@
                   <option selected disabled>Sala*</option>
                 </select>
               </div>
+              
+
+              
+              <div class="col-10 col-md-8 mb-2">
+                <input type="text" name="valor_assento" id="valor_assento" class="form-control form-control-lg form-select11" placeholder="Valor da sessão*" style="color: white;">
+              </div>
+             
+
           
+
               <div class="col-12 col-md-12 mb-2">
                 <button type="submit" id="btncc" style="margin: 0px; margin-top: 15px;" class="btn btn-danger tit-white1 col-8">CRIAR SESSÃO</button>
             </div>
@@ -111,7 +120,8 @@
                     "data": JSON.stringify({
                         "datasessao": dataFormatada,
                         "id_cadastrof": $("#filmesessao").val(),
-                        "id_sala": $("#salasessao").val()
+                        "id_sala": $("#salasessao").val(),
+                        "valor_assento": $("#valor_assento").val(),
                     }),
                 };
         
@@ -135,6 +145,9 @@
                 });
             });
         
+            
+
+            
 
             async function carregarFilmes() {       // Função assíncrona (async) responsável por buscar e carregar os filmes no select da tela
                 try {

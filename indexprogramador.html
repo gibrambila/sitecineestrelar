@@ -122,33 +122,51 @@ async function carregarFilmes() {
 
                 // Define o conteúdo HTML do elemento, incluindo imagem e botões de ação
                 filmeDiv.innerHTML = `
-                    <div class="img-programacao text-center" style="widht: 192px; height: 282px; margin-bottom: 200px;">
-                        <!-- Link para a página do filme -->
-                        <a href="pagefilme.html?id=${filme.id_cadastrof}">
-                            <img style="width: 192px; height:282px" class="img-programacao text-center" 
-                            src="http://192.168.1.120:5000/${filme.imagem}" alt="${filme.titulo}">
-                        </a>
-                        
-                        <!-- Botão para editar o filme, com os detalhes passados na URL -->
-                        <a href="editfilme.html?id=${filme.id_cadastrof}&titulo=${filme.titulo}&sinopse=${filme.sinopse}&genero=${filme.genero}&duracao=${filme.duracao}&diretor=${filme.diretor}&elenco=${filme.elenco}&classificacao=${filme.classificacao}" 
-                        style="display: block; width: 85%; height: 50px; margin-bottom: 60px; margin-top: 18px; margin-left: 12px;" 
-                        class="btnrodape text-center">EDITAR FILME</a>
+        <!-- CONTAINER DOS FILMES -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 20px;">
 
-                        <a href="addsessao.html?idfilme=${filme.id_cadastrof}" 
-                        style="display: block; width: 85%; height: 50px; margin-bottom: 60px; margin-top: -50px; margin-left: 12px; background-color: #ffc107;" 
-                        class="btnrodape text-center">CRIAR SESSÃO</a>
+    <!-- BLOCO DE UM FILME -->
+    <div style="width: 192px; text-align: center;">
 
-                        <!-- Botão para excluir o filme -->
-                        <button class="btn-danger btnexcluir" id="btnexcluir"
-                         style="padding: 10px; background-color: red;
-                          color: white;
-                           margin: -50px auto;
-                            display: block;
-                             width: 70%; height: 50px; font-family: poppins; font-weight: 600; border-radius: 10px;">
-                            EXCLUIR
-                        </button>
-                        
-                    </div>
+        <!-- Imagem do filme -->
+        <a href="pagefilme.html?id=${filme.id_cadastrof}">
+            <img src="http://192.168.1.120:5000/${filme.imagem}" 
+                 alt="${filme.titulo}" 
+                 style="width: 192px; height: 282px; border-radius: 8px;">
+        </a>
+
+        <!-- Botão EDITAR -->
+        <a href="editfilme.html?id=${filme.id_cadastrof}&titulo=${filme.titulo}&sinopse=${filme.sinopse}&genero=${filme.genero}&duracao=${filme.duracao}&diretor=${filme.diretor}&elenco=${filme.elenco}&classificacao=${filme.classificacao}" 
+           style="display: block; width: 85%; height: 50px; margin: 18px auto 10px;" 
+           class="btnrodape text-center">
+           EDITAR FILME
+        </a>
+
+        <!-- Botão CRIAR SESSÃO -->
+        <a href="addsessao.html?idfilme=${filme.id_cadastrof}" 
+           style="display: block; width: 85%; height: 50px; margin: 0 auto 10px; background-color: #ffc107;" 
+           class="btnrodape text-center">
+           CRIAR SESSÃO
+        </a>
+
+        <!-- Botão EXCLUIR -->
+        <button class="btn-danger btnexcluir" id="btnexcluir"
+                style="display: block; width: 70%; height: 50px; margin: 0 auto;
+                       background-color: red; color: white;
+                       font-family: Poppins; font-weight: 600; border-radius: 10px;">
+            EXCLUIR
+        </button>
+
+    </div>
+    <!-- FIM DO BLOCO DO FILME -->
+
+    <!-- Repita esse bloco para cada filme -->
+
+</div>
+
+
+
+
                 `;
 
                 // Adiciona o novo elemento ao contêiner de filmes
