@@ -12,11 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-
     <script src="assets/js/segurancaadm.js" defer></script>
-
-
-
 </head>
 <body class="container" style="background-color: black;">
     <header class="text-center">
@@ -26,6 +22,7 @@
         <h1 class="tit-red1">EDITAR FILME</h1>
         <h3 class="subtit-white111">PREENCHA OS DADOS ABAIXO</h3>
         <form id="formeditafilme">
+            <!-- Campos do Formulário -->
             <div class="row mt-2">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -93,15 +90,23 @@
             <div class="row mt-2">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                  
-                    <input id="imagem" name="imagem" style="color: white;"  required class="form-control form-control-lg addimg input-form11" placeholder="Capa do filme*" type="file" accept="image/*">
+                   <input id="imagem" name="imagem" style="color: white;"  required class="form-control form-control-lg addimg input-form11" placeholder="Capa do filme*" type="file" accept="image/*">
                 </div>
+                <div class="col-md-2"></div>
+            </div>
                 <div class="col-md-2"></div>
             </div>
             <div class="row mt-2">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <input id="banner" name="banner" style="color: white;"  required class="form-control addimg form-control-lg input-form11" type="file" placeholder="Banner do filme*" accept="image/*">
+                </div>
+                 <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                <input id="linkvideo" name="link" style="color: white;" required
+       class="form-control form-control-lg addimg input-form11"
+       placeholder="URL do vídeo do YouTube*" type="text">
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -111,20 +116,15 @@
                 <div class="col-md-2"></div>
 
                 <div class="col-md-2"></div>
-                <a href="indexprogramador.html" style="margin-top: -10px;height: 80px;" id="btncc" class="btn btn-danger tit-white11 col-md-8"> <p style="
-                    position: relative;
-                    top: 23px;
-                ">CANCELAR  </p></a>
+                <a href="indexprogramador.html" style="margin-top: -10px;height: 80px;" id="btncc" class="btn btn-danger tit-white11 col-md-8"> <p style="position: relative; top: 23px;">CANCELAR</p></a>
                 <div class="col-md-2"></div>
-
+            </div>
         </form>
 
 <script>
-   
-
     // Captura os parâmetros da URL
-    const { search } = window.location; // Obtém a string de consulta da URL (exemplo: ?id=123&titulo=Filme)
-    const params = new URLSearchParams(search); // Converte a string de consulta em um objeto de parâmetros
+    const { search } = window.location; 
+    const params = new URLSearchParams(search); 
 
     // Obtém os valores dos parâmetros passados na URL
     const id = params.get('id');  
@@ -147,7 +147,6 @@
 
     // Captura o evento de envio do formulário
     $("#formeditafilme").on("submit", function (e) {
-        
         e.preventDefault(); // Impede que a página seja recarregada ao enviar o formulário
 
         // Captura os dados preenchidos pelo usuário no formulário
@@ -162,6 +161,7 @@
             diretor: dados.get("diretor"),
             elenco: dados.get("elenco"),
             classificacao: dados.get("classificacao"),
+            link: dados.get("link"),
         }
 
         // Converte o objeto para JSON antes de enviar para a API
@@ -172,58 +172,48 @@
 
         // Faz a requisição para editar os dados do filme na API
         $.ajax({
-            method: "PUT", // Método HTTP para atualização
-            url: "http://192.168.1.120:5000/filme_edit_dados/" + id, // URL da API com o ID do filme
-            data: envia, // Envia os dados convertidos para JSON
-
+            method: "PUT", 
+            url: "http://192.168.1.130:5000/filme_edit_dados/" + id, 
+            data: envia, 
             headers: {
-                "Authorization": "Bearer " + token // Adiciona o token de autenticação no cabeçalho
+                "Authorization": "Bearer " + token 
             },
-
-            contentType: "application/json", // Informa que o conteúdo enviado é JSON
-
-            // Caso a requisição seja bem-sucedida
+            contentType: "application/json",
             success: function (retorno) {
-                
                 var form = new FormData();
 
-                // Captura a imagem do input (se existir) e adiciona ao FormData
+                // Envia a imagem do input de capa
                 var fileInput = $("#imagem")[0];
                 if (fileInput && fileInput.files.length > 0) {
-                    form.append("imagem", fileInput.files[0], "1.jpg");
+                    form.append("imagem", fileInput.files[0], "capa-" + id + ".jpg");
                 }
 
-                // Captura o banner do input (se existir) e adiciona ao FormData
+                // Envia o banner do input
                 var bannerInput = $("#banner")[0];
                 if (bannerInput && bannerInput.files.length > 0) {
-                    form.append("banner", bannerInput.files[0], "3.jpg");
+                    form.append("banner", bannerInput.files[0], "banner-" + id + ".jpg");
                 }
 
-                // Configuração da requisição para enviar a imagem e o banner
                 var settings = {
-                    url: "http://192.168.1.120:5000/filme_edit_imagem/" + id, // URL da API para atualizar imagem/banner
+                    url: "http://192.168.1.130:5000/filme_edit_imagem/" + id,
                     method: "PUT",
                     timeout: 0,
-                    processData: false, // Indica que os dados não devem ser processados automaticamente
-                    mimeType: "multipart/form-data", // Tipo de conteúdo para envio de arquivos
+                    processData: false,
+                    mimeType: "multipart/form-data",
                     contentType: false,
                     headers: {
-                        "Authorization": "Bearer " + token // Adiciona o token de autenticação no cabeçalho
+                        "Authorization": "Bearer " + token
                     },
-                    data: form // Envia os arquivos de imagem/banner
+                    data: form
                 };
 
-                // Faz a requisição AJAX para enviar as imagens
                 $.ajax(settings).done(function (response) {
-                    // Exibe um alerta de sucesso usando SweetAlert2
                     Swal.fire({
                         title: "DADOS EDITADOS!",
                         icon: "success",
                         draggable: true
                     });
-
                 }).fail(function (retorno) {
-                    // Caso ocorra um erro, exibe a mensagem de erro retornada pela API
                     const mensagemErro = retorno.responseJSON?.message || "Ocorreu um erro desconhecido.";
                     Swal.fire({
                         icon: "error",
@@ -232,8 +222,6 @@
                     });
                 });
             },
-
-            // Caso ocorra um erro na edição dos dados do filme
             error: function (retorno) {
                 const mensagemErro = retorno.responseJSON?.message || "Ocorreu um erro desconhecido.";
                 Swal.fire({
@@ -244,11 +232,7 @@
             }
         });
     });
-
-
-    </script>
-
-
-    </section>
+</script>
+</section>
 </body>
 </html>

@@ -27,6 +27,10 @@
       object-fit: cover;
       border-radius: 10px;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 <body style="background-color: rgb(0, 0, 0);" class="container">
@@ -34,8 +38,8 @@
   <header class="cabecalho">
     <div class="divcbc d-flex">
       <img class="logo cabecalho1" src="assets/img/cinestrelar.png" />
-      <a class="btn-cbc">PROGRAMAÇÃO</a>
-      <a class="btn-cbc">SNACKBAR</a>
+      <a href="#programacao" class="btn-cbc">PROGRAMAÇÃO</a>
+      <a class="btn-cbc" href="snackbar.html">SNACKBAR</a>
       <a class="btn-cbc">CLUB CINESTELAR</a>
       <img id="avatar" src="assets/img/Avatar.png" class="avatarcbc" />
     </div>
@@ -59,6 +63,7 @@
   </div>
 
   <section>
+    <!-- Carrossel -->
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -70,16 +75,16 @@
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Anterior</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Próximo</span>
       </button>
     </div>
 
-    <h3 class="subtit-white22">PROGRAMAÇÃO</h3>
-
+    <!-- PROGRAMAÇÃO -->
+    <h3 id="programacao" class="subtit-white22">PROGRAMAÇÃO</h3>
     <div class="container">
       <div class="row" id="filmesexibe"></div>
     </div>
@@ -87,7 +92,7 @@
     <script>
       async function carregarFilmes() {
         try {
-          const resposta = await fetch("http://192.168.1.120:5000/filme");
+          const resposta = await fetch("http://192.168.1.130:5000/filme");
           const dados = await resposta.json();
           const filmesContainer = document.getElementById("filmesexibe");
 
@@ -97,10 +102,24 @@
               filmeDiv.classList.add("col-md-2", "filme-card");
               filmeDiv.id = `filme-${filme.id_cadastrof}`;
 
+              const imagemURL = `http://192.168.1.130:5000/${filme.imagem}`;
+
+              let sessoesHTML = "";
+              if (filme.sessoes && filme.sessoes.length > 0) {
+                sessoesHTML = `
+                  <div class="mt-2" style="color: white; font-size: 13px;">
+                    ${filme.sessoes.map(sessao => `
+                      <div>📅 ${sessao.data} 🕒 ${sessao.horario} 🎬 ${sessao.sala}</div>
+                    `).join("")}
+                  </div>
+                `;
+              }
+
               filmeDiv.innerHTML = `
                 <a href="pagefilme.html?id=${filme.id_cadastrof}">
-                  <img src="http://192.168.1.120:5000/${filme.imagem}" alt="${filme.titulo}" class="filme-img" />
+                  <img src="${imagemURL}" alt="${filme.titulo}" class="filme-img" onerror="this.src='assets/img/erro.jpg'" />
                 </a>
+                ${sessoesHTML}
               `;
 
               filmesContainer.appendChild(filmeDiv);
@@ -114,24 +133,26 @@
       carregarFilmes();
     </script>
 
-    <h3 class="subtit-white22">APROVEITE NO CINESTELAR</h3>
 
+
+    <!-- APROVEITE NO CINESTELAR -->
+    <h3 class="subtit-white22">APROVEITE NO CINESTELAR</h3>
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <img src="assets/img/COMBO.jpg" class="img-fluid" />
+          <img src="assets/img/combocolorido.png" class="img-fluid" />
         </div>
         <div class="col-md-4">
-          <img src="assets/img/Captura de tela 2025-02-18 143009.png" class="img-fluid" />
+          <img src="assets/img/combodoce.png" class="img-fluid" />
         </div>
         <div class="col-md-4">
-          <img src="assets/img/DALL·E 2025-02-18 14.41.28.jpg" class="img-fluid" />
+          <img src="assets/img/pipoquinhas.png" class="img-fluid" />
         </div>
       </div>
     </div>
 
-    <h3 class="subtit-white22">EM BREVE</h3>
 
+    <!-- EM BREVE -->
     <div class="container">
       <div class="row g-3">
         <div class="col-md-2"><a href="pagefilme.html"><img class="img-fluid" style="height: 300px; object-fit: cover;" src="assets/img/images (2).jfif" /></a></div>
@@ -144,6 +165,8 @@
     </div>
   </section>
 
+
+  <!-- RODAPÉ -->
   <footer class="mt-5">
     <div class="container">
       <div class="row">

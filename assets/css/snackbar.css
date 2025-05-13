@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+           
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    position: relative;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.back-arrow {
+    position: absolute;
+    left: 20px;  
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #fff;
+    padding: 0 5px;  
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+header h1 .cardapio {
+    color: #dd1e1e;
+}
+
+.pipoca-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.red-line {
+    width: 510px;
+    height: 5px;
+    background-color: #dd1e1e;
+}
+
+.combos {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 10px 0;
+}
+.combo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+}
+
+.combo-left img, .combo-right img {
+    width: 280px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.combo-text h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.combo-text ul {
+    list-style: none;
+}
+
+.combo-text li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.rodapé {
+    background-color: #A01E20;
+    padding: 25px;
+    margin-top: 30px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    max-width: 100%;
+
+.rodapé p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+}
+
+.social-links a:nth-child(3) img {
+    width: 40px;
+    height: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+    .combo {
+        gap: 30px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .combo img {
+        width: 70%;
+    }
+
+    .combo-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .combo-text li {
+        font-size: 1rem;
+    }
+
+    .red-line {
+        width: 300px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .back-arrow {
+        left: 10px;
+        font-size: 1.5rem;
+    }
+
+    .title-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .pipoca-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .red-line {
+        width: 150px;
+    }
+
+    .combos {
+        padding: 10px;
+    }
+
+    .combo {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .combo img {
+        width: 90%;
+    }
+
+    .combo-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .combo-text li {
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 20px 0;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .back-arrow {
+        left: 5px;
+        font-size: 1.3rem;
+    }
+
+    .title-container h1 {
+        font-size: 1.2rem;
+    }
+
+    .red-line {
+        width: 100px;
+    }
+
+    .combo img {
+        width: 100%;
+    }
+
+    .combo-text h2 {
+        font-size: 1.2rem;
+    }
+
+    .combo-text li {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}

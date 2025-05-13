@@ -109,7 +109,7 @@
             const token = localStorage.getItem("token");  // Coloque o seu token real aqui
 
             // Fazendo a requisição à API com o token no cabeçalho Authorization
-            const resposta = await fetch("http://192.168.1.120:5000/usuarios/lista", {
+            const resposta = await fetch("http://192.168.1.130:5000/usuarios/lista", {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,  // Enviando o token no cabeçalho

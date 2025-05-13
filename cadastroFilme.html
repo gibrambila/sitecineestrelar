@@ -25,10 +25,18 @@
         <h1 class="tit-red1">CADASTRAR FILME</h1>
         <h3 class="subtit-white111">PREENCHA OS DADOS ABAIXO</h3>
         <form id="addfilme">
+
             <div class="row mt-2">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <input id="titulo" name="titulo" required class="form-control form-control-lg input-form11" type="text" style="color: white;" placeholder="Título do filme*">
+                </div>
+
+                 <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                 <input id="trailer" name="titulo" required class="form-control form-control-lg input-form11" type="text" style="color: white;" placeholder="Trailer do filme*">
+
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -145,7 +153,7 @@
     }
 
     var settings = {
-        "url": "http://192.168.1.120:5000/filme_imagem",  // Corrigi a URL removendo o &quot;
+        "url": "http://192.168.1.130:5000/filme_imagem",  // Corrigi a URL removendo o &quot;
         "method": "POST",
         "timeout": 0,
         "headers": {

@@ -175,7 +175,7 @@
                 <button class="assento" data-id="73" data-assento="F3">👤</button>
                 <button class="assento" data-id="74" data-assento="F4">👤</button>
                 <button class="assento" data-id="75" data-assento="F5">👤</button>
-                <button class="assento" data-id="76" data-assento="F6">👤</button>
+                <button class=          "assento" data-id="76" data-assento="F6">👤</button>
                 <button class="assento" data-id="77" data-assento="F7">👤</button>
                 <button class="assento" data-id="78" data-assento="F8">👤</button>
                 <button class="assento" data-id="79" data-assento="F9">👤</button>
@@ -253,7 +253,7 @@ $("#btn-confirmar").on("click", function() {
 
     // Configura os dados da requisição para reservar o assento
     var settings = {
-        "url": "http://192.168.1.120:5000/reservar",
+        "url": "http://192.168.1.130:5000/reservar",
         "method": "POST",       // Define o método da requisição, que nesse caso é POST (envio de dados)
         "timeout": 0,       // Define o tempo limite da requisição (0 = sem limite)
         "headers": {     // Define os headers da requisição (informações extras enviadas junto)
@@ -304,7 +304,7 @@ $("#btn-confirmar").on("click", function() {
     async function marcarAssentosReservados() {
       try {
    
-        const response = await fetch('http://192.168.1.120:5000/sessao/assentos/' + idSessao);
+        const response = await fetch('http://192.168.1.130:5000/sessao/assentos/' + idSessao);
         const data = await response.json();
   
         const assentosReservados = data.assentos_reservados;
@@ -338,7 +338,7 @@ $("#btn-confirmar").on("click", function() {
 <script>
      async function marcarAssentosReservados() {
     try {
-      const response = await fetch('http://192.168.1.120:5000/sessao/assentos/42');
+      const response = await fetch('http://192.168.1.130:5000/sessao/assentos/42');
       const data = await response.json();
 
       const assentosReservados = data.assentos_reservados;

@@ -9,17 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <script src="assets/js/segurancaadm.js" defer></script>
-
-
-
 </head>
 <body class="container" style="background-color: black; overflow-x: hidden">
     <header class="text-center">
-        <a href="indexprogramador.html" ><img class="logo" src="assets/img/cinestrelar.png"></a>
+        <a href="indexprogramador.html"><img class="logo" src="assets/img/cinestrelar.png"></a>
     </header>
     <section class="text-center">
         <h1 class="tit-red1">EDITAR</h1>
@@ -27,107 +24,125 @@
         <h3 class="subtit-white111">PREENCHA OS DADOS ABAIXO</h3>
 
         <form id="addpromo">
-    <div class="mb-3">
-        <input id="titulo" name="titulopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Título da promoção*">
-    </div>
+            <div class="mb-3">
+                <input id="titulo" name="titulopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Título da promoção*">
+            </div>
 
-    <div class="mb-3">
-        <input name="duracao" id="duracaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Duração (dias)*">
-    </div>
+            <div class="mb-3">
+                <input name="duracao" id="duracaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Duração (dias)*">
+            </div>
 
-    <div class="mb-3">
-        <select name="genero" id="generopromo" required class="form-select form-control-lg input-form11">
-            <option selected disabled>Gênero*</option>
-            <option value="acao">Ingressos</option>
-            <option value="comedia">Alimentação</option>
-            <option value="drama">Brindes</option>
-        </select>
-    </div>
+            <div class="mb-3">
+                <select name="genero" id="generopromo" required class="form-select form-control-lg input-form11">
+                    <option selected disabled>Gênero*</option>
+                    <option value="acao">Ingressos</option>
+                    <option value="comedia">Alimentação</option>
+                    <option value="drama">Brindes</option>
+                </select>
+            </div>
 
-    <div class="mb-3">
-        <input name="descricaopromo" id="descricaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Descrição*">
-    </div>
+            <div class="mb-3">
+                <input name="descricaopromo" id="descricaopromo" required class="form-control form-control-lg input-form11" type="text" placeholder="Descrição*">
+            </div>
 
-    <h3 class="subtit-white111 mt-4">IDENTIDADE VISUAL</h3>
+            <h3 class="subtit-white111 mt-4">IDENTIDADE VISUAL</h3>
 
-    <div class="mb-3">
-        <input id="capapromo" name="capapromo" required class="form-control form-control-lg input-form11" type="file" accept="image/*">
-    </div>
+            <div class="mb-3">
+                <input id="capapromo" name="capapromo" required class="form-control form-control-lg input-form11" type="file" accept="image/*">
+            </div>
 
-    <div class="d-grid gap-2">
-        <button type="submit" id="btncc" class="btn btn-danger tit-white11">EDITAR PROMOÇÃO</button>
-        <a href="indexprogramador.html" style="height: 80px; font-size: 15px;" id="btncancel" class="btn btn-danger tit-white11"><p style="
-            position: relative;
-            top: 23px;
-        ">CANCELAR  </p></a>
-    </div>
-</form>
+            <input type="hidden" id="id_promo" value="{{ id_promo }}">
 
+            <div class="d-grid gap-2">
+                <button type="submit" id="btncc" class="btn btn-danger tit-white11">EDITAR PROMOÇÃO</button>
+                <a href="indexprogramador.html" style="height: 80px; font-size: 15px;" id="btncancel" class="btn btn-danger tit-white11"><p style="position: relative; top: 23px;">CANCELAR</p></a>
+            </div>
+        </form>
 
         <script>
- // Captura o evento de submissão do formulário com ID "addpromo"
- $("#addpromo").on("submit", function(e) {
-           // Impede o comportamento padrão de recarregar a página
-           e.preventDefault();
-       
-           // Cria um objeto FormData para armazenar os dados do formulário
-           var form = new FormData();
-           form.append("titulopromo", $("#titulopromo").val()); // Adiciona o título da promoção
-           form.append("duracaopromo", $("#duracaopromo").val()); // Adiciona a duração da promoção
-           form.append("generopromo", $("#generopromo").val()); // Adiciona o gênero da promoção
-           form.append("descricaopromo", $("#descricaopromo").val()); // Adiciona a descrição da promoção
-       
-           // Captura os arquivos de imagem do input com ID "capapromo"
-           var fileInput = $("#capapromo")[0]; // Obtém o elemento input de arquivo
-           if (fileInput && fileInput.files.length > 0) { // Verifica se há arquivos selecionados
-               form.append("capapromo", fileInput.files[0], "1.jpg"); // Adiciona o arquivo ao FormData
-           }
-       
-           // Configurações da requisição AJAX
-           var settings = {
-               "url": "http://192.168.1.120:5000/promocao/add", // Endpoint da API para cadastrar promoção
-               "method": "POST", // Método HTTP
-               "timeout": 0, // Sem tempo limite para a requisição
-               "headers": {
-                   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoiciJ9.LvXXpOE5lGaMz1sKgx7XbOfMJge_EjYPd9ySVWFhSkY" // Token de autenticação
-               },
-               "processData": false, // Não processa automaticamente os dados do formulário
-               "mimeType": "multipart/form-data", // Define o tipo MIME adequado para envio de arquivos
-               "contentType": false, // Desativa a definição automática do Content-Type
-               "data": form // Dados a serem enviados na requisição
-           };
-       
-           // Envia a requisição AJAX
-           $.ajax(settings).done(function (response) {
-               console.log(response); // Exibe a resposta no console
-               
-               // Exibe um alerta de sucesso usando SweetAlert2
-               Swal.fire({
-                   title: "Promoção cadastrada!", // Título da notificação
-                   icon: "success", // Ícone de sucesso
-                   draggable: true // Permite arrastar o alerta
-               }).then(() => {
-                   // Redireciona o usuário para a página adequada com base no cargo
-                   if (retorno.cargo == "ADM") {
-                       window.location.href = "indexprogramador.html"; // Página do administrador
-                   } else {
-                       window.location.href = "indexprogramador.html"; // Página do usuário comum (mesma página, possível erro aqui)
-                   }
-               });
-       
-           }).fail(function (resposta) {
-               // Exibe um alerta de erro caso a requisição falhe
-               Swal.fire({
-                   icon: "error", // Ícone de erro
-                   title: "ERRO", // Título da notificação
-                   text: resposta.responseJSON?.error || "Ocorreu um erro, tente novamente mais tarde.", // Mensagem de erro
-               });
-           });
-        });
-        </script>
-       
-       
+            // Captura o evento de submissão do formulário com ID "addpromo"
+            $("#addpromo").on("submit", function(e) {
+                // Impede o comportamento padrão de recarregar a página
+                e.preventDefault();
 
+                var id_promo = $("#id_promo").val(); // Obtém o ID da promoção do campo oculto
+
+                // Cria um objeto FormData para armazenar os dados do formulário
+                var form = new FormData();
+                form.append("titulopromo", $("#titulo").val()); // Adiciona o título da promoção
+                form.append("duracaopromo", $("#duracaopromo").val()); // Adiciona a duração da promoção
+                form.append("generopromo", $("#generopromo").val()); // Adiciona o gênero da promoção
+                form.append("descricaopromo", $("#descricaopromo").val()); // Adiciona a descrição da promoção
+
+                // Captura os arquivos de imagem do input com ID "capapromo"
+                var fileInput = $("#capapromo")[0]; // Obtém o elemento input de arquivo
+                if (fileInput && fileInput.files.length > 0) { // Verifica se há arquivos selecionados
+                    form.append("capapromo", fileInput.files[0], "1.jpg"); // Adiciona o arquivo ao FormData
+                }
+
+                // Configurações da requisição AJAX para editar os dados da promoção
+                var settings = {
+                    "url": "http://192.168.1.130:5000/promocao_edit_dados/" + id_promo, // Endpoint da API para editar promoção
+                    "method": "PUT", // Método HTTP
+                    "timeout": 0, // Sem tempo limite para a requisição
+                    "headers": {
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoiciJ9.LvXXpOE5lGaMz1sKgx7XbOfMJge_EjYPd9ySVWFhSkY" // Token de autenticação
+                    },
+                    "processData": false, // Não processa automaticamente os dados do formulário
+                    "mimeType": "multipart/form-data", // Define o tipo MIME adequado para envio de arquivos
+                    "contentType": false, // Desativa a definição automática do Content-Type
+                    "data": form // Dados a serem enviados na requisição
+                };
+
+                // Envia a requisição AJAX para editar os dados da promoção
+                $.ajax(settings).done(function(response) {
+                    console.log(response); // Exibe a resposta no console
+
+                    // Envia a imagem
+                    var imagemForm = new FormData();
+                    var imagemInput = $("#capapromo")[0];
+                    if (imagemInput && imagemInput.files.length > 0) {
+                        imagemForm.append("imagem", imagemInput.files[0], "imagem.jpg");
+                    }
+
+                    var settingsImagem = {
+                        "url": "http://192.168.1.130:5000/promo_edit_imagem/" + id_promo, // Endpoint da API para atualizar a imagem
+                        "method": "PUT",
+                        "headers": {
+                            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoiciJ9.LvXXpOE5lGaMz1sKgx7XbOfMJge_EjYPd9ySVWFhSkY"
+                        },
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": imagemForm
+                    };
+
+                    // Envia a imagem via AJAX
+                    $.ajax(settingsImagem).done(function(responseImagem) {
+                        Swal.fire({
+                            title: "Promoção editada com sucesso!",
+                            icon: "success",
+                            draggable: true
+                        }).then(() => {
+                            window.location.href = "indexprogramador.html"; // Redireciona para a página principal
+                        });
+                    }).fail(function(resposta) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "ERRO",
+                            text: "Ocorreu um erro ao atualizar a imagem, tente novamente.",
+                        });
+                    });
+
+                }).fail(function(resposta) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "ERRO",
+                        text: resposta.responseJSON?.error || "Ocorreu um erro, tente novamente mais tarde.",
+                    });
+                });
+            });
+        </script>
     </section>
 </body>
 </html>
